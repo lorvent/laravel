@@ -26,7 +26,7 @@ jobs:
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
           shopt -s extglob dotglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
-          mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
+          mv ./!(build-${{ steps.get_version.outputs.VERSION }}|.git|node_modules) build-${{ steps.get_version.outputs.VERSION }}
           #just to make sure if any hidden files are copied or not
           ls -a
           # Create final zip to download
