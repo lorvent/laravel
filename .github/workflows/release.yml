@@ -27,6 +27,7 @@ jobs:
           shopt -s extglob dotglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
           mv ./!(build-${{ steps.get_version.outputs.VERSION }}|.git|node_modules) build-${{ steps.get_version.outputs.VERSION }}
+          shopt -u dotglob
           #just to make sure if any hidden files are copied or not
           ls -a
           # Create final zip to download
