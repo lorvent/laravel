@@ -26,7 +26,7 @@ jobs:
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
           shopt -s extglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
-          mv !(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
+          mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
           ls -a
           #cp -af !\(build-${{ steps.get_version.outputs.VERSION }}\) build-${{ steps.get_version.outputs.VERSION }}/
           # Create final zip to download
