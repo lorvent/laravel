@@ -12,16 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Build project # This would actually build your project, using zip for an example artifact
+        uses: actions/checkout@
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+      - name: Build project # This would build the project, and then creating build zip file
         run: |
           # Install composer dependencies
-          composer install
+          ##composer install
           # Install npm dependencies and move them into places
-          yarn
-          npm run dev
+          ##yarn
+          ##npm run dev
           # Create final zip to download
-          zip -r build-${GITHUB_REF/refs\/tags\//}.zip . -x *.git* node_modules/\*
+          zip -r build-${{ steps.get_version.outputs.VERSION }}.zip . -x *.git* node_modules/\*
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
