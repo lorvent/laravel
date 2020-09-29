@@ -19,17 +19,17 @@ jobs:
       - name: Build project # This would build the project, and then creating build zip file
         run: |
           # Install composer dependencies
-          ##composer install
+          composer install
           # Install npm dependencies and move them into places
-          ##yarn
-          ##npm run dev
+          yarn
+          npm run dev
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
           shopt -s extglob dotglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
           mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
           shopt -u dotglob
-          #remove unwanted files
-          cd build-${{ steps.get_version.outputs.VERSION }} && rm -rf .git && rm -rf node_modules && cd ..
+          #remove unwanted files & folders
+          cd build-${{ steps.get_version.outputs.VERSION }} && rm -rf .git && rm -rf node_modules && rm -rf .github && rm .gitlab-ci.yml && cd ..
           #just to make sure if any hidden files are copied or not
           ls -a
           # Create final zip to download
