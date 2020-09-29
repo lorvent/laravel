@@ -26,9 +26,9 @@ jobs:
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
           shopt -s extglob dotglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
-          mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
+          #mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
+          cp -af !(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}/
           ls -a
-          #cp -af !\(build-${{ steps.get_version.outputs.VERSION }}\) build-${{ steps.get_version.outputs.VERSION }}/
           # Create final zip to download
           zip -r build-${{ steps.get_version.outputs.VERSION }}.zip build-${{ steps.get_version.outputs.VERSION }}/ -x *.git* node_modules/\ build-${{ steps.get_version.outputs.VERSION }}/\*
       - name: Create Release
