@@ -17,6 +17,7 @@ jobs:
         run: |
           composer install
           yarn
+          npm run dev
           #zip --junk-paths my-artifact bower.json
           zip -r my-artifact.zip . -x "node_modules"
       - name: Create Release
