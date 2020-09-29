@@ -17,9 +17,10 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Build project # This would build the project, and then creating build zip file
-        env:
-          TAG: ${{ steps.get_version.outputs.VERSION }}
+        #env:
+          #TAG: ${{ steps.get_version.outputs.VERSION }}
         run: |
+          echo ::set-output name=TAG::${{ steps.get_version.outputs.VERSION }}
           # Install composer dependencies
           ##composer install
           # Install npm dependencies and move them into places
