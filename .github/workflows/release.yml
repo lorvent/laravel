@@ -27,13 +27,13 @@ jobs:
           rm -rf .git && rm -rf node_modules && rm -rf .github && rm -f .gitlab-ci.yml
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
           shopt -s extglob dotglob
-          mkdir build-${{ steps.get_version.outputs.VERSION }}
-          mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
+          mkdir project-${{ steps.get_version.outputs.VERSION }}
+          mv ./!(project-${{ steps.get_version.outputs.VERSION }}) project-${{ steps.get_version.outputs.VERSION }}
           shopt -u dotglob
           #just to make sure if any hidden files are copied or not
           #ls -a
           # Create final zip to download
-          zip -r build-${{ steps.get_version.outputs.VERSION }}.zip build-${{ steps.get_version.outputs.VERSION }}/ -x * .git/\ node_modules/\ *
+          zip -r project-${{ steps.get_version.outputs.VERSION }}.zip project-${{ steps.get_version.outputs.VERSION }}/ -x * .git/\ node_modules/\ *
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -51,6 +51,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: ./build-${{ steps.get_version.outputs.VERSION }}.zip
-          asset_name: build-${{ steps.get_version.outputs.VERSION }}.zip
+          asset_path: ./project-${{ steps.get_version.outputs.VERSION }}.zip
+          asset_name: project-${{ steps.get_version.outputs.VERSION }}.zip
           asset_content_type: application/zip
