@@ -24,9 +24,10 @@ jobs:
           ##yarn
           ##npm run dev
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
+          shopt -s extglob
           mkdir build
-          #mv !\(build\) build
-          cp -af !\(build\) build/
+          #mv !(build) build
+          #cp -af !\(build\) build/
           # Create final zip to download
           zip -r build.zip build -x *.git* node_modules/\ build-${{ steps.get_version.outputs.VERSION }}/\*
       - name: Create Release
