@@ -18,13 +18,15 @@ jobs:
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Build project # This would build the project, and then creating build zip file
         run: |
+          mkdir build && cd build
           # Install composer dependencies
           ##composer install
           # Install npm dependencies and move them into places
           ##yarn
           ##npm run dev
           # Create final zip to download
-          zip -r build-${{ steps.get_version.outputs.VERSION }}.zip . -x *.git* node_modules/\*
+          cd ..
+          zip -r build-${{ steps.get_version.outputs.VERSION }}.zip build -x *.git* node_modules/\*
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
