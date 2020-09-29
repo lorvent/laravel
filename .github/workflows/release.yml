@@ -24,7 +24,7 @@ jobs:
           ##yarn
           ##npm run dev
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
-          shopt -s extglob
+          shopt -s extglob dotglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
           mv ./!(build-${{ steps.get_version.outputs.VERSION }}) build-${{ steps.get_version.outputs.VERSION }}
           ls -a
