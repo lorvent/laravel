@@ -22,6 +22,7 @@ jobs:
           composer install
           # Install npm dependencies and move them into places
           yarn
+          yarn audit
           npm run dev
           #remove unwanted files & folders
           rm -rf .git && rm -rf node_modules && rm -rf .github && rm -f .gitlab-ci.yml
