@@ -20,18 +20,18 @@ jobs:
         #env:
         #TAG: ${{ steps.get_version.outputs.VERSION }}
         run: |
-          echo ::set-env name=TAG::${{ steps.get_version.outputs.VERSION }}
+          echo ::set-env name=TAGY::${{ steps.get_version.outputs.VERSION }}
           # Install composer dependencies
           ##composer install
           # Install npm dependencies and move them into places
           ##yarn
           ##npm run dev
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
-          mkdir build-${{ env.TAG }}
-          #mv !(build-${{ TAG }}) build-${{ TAG }}
-          cp -af !(build-${{ TAG }}) build-${{ TAG }}/
+          mkdir build-${{ env.TAGY }}
+          #mv !(build-${{ TAGY }}) build-${{ TAGY }}
+          cp -af !(build-${{ TAGY }}) build-${{ TAGY }}/
           # Create final zip to download
-          zip -r build-${{ TAG }}.zip build-${{ TAG }} -x *.git* node_modules/\ build-${{ steps.get_version.outputs.VERSION }}/\*
+          zip -r build-${{ TAGY }}.zip build-${{ TAGY }} -x *.git* node_modules/\ build-${{ steps.get_version.outputs.VERSION }}/\*
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
