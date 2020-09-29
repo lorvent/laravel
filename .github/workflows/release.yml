@@ -30,7 +30,7 @@ jobs:
           #just to make sure if any hidden files are copied or not
           ls -a
           # Create final zip to download
-          zip -r build-${{ steps.get_version.outputs.VERSION }}.zip build-${{ steps.get_version.outputs.VERSION }}/ -x *.git* node_modules/\ build-${{ steps.get_version.outputs.VERSION }}/\*
+          zip -r build-${{ steps.get_version.outputs.VERSION }}.zip build-${{ steps.get_version.outputs.VERSION }}/ -x *.git/\ node_modules/\ *
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
