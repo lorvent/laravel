@@ -24,7 +24,7 @@ jobs:
           yarn
           npm run dev
           #remove unwanted files & folders
-          rm -rf .git && rm -rf node_modules && rm -rf .github && rm .gitlab-ci.yml
+          rm -rf .git && rm -rf node_modules && rm -rf .github && rm -f .gitlab-ci.yml
           # create a folder with version name and move all files into it so that it will be extracted into its own folder
           shopt -s extglob dotglob
           mkdir build-${{ steps.get_version.outputs.VERSION }}
