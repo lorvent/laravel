@@ -17,6 +17,8 @@ jobs:
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Build project # This would build the project, and then creating build zip file
+        with:
+          php-version: 7.3
         run: |
           # Install composer dependencies
           composer install
